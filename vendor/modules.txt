@@ -1,0 +1,40 @@
+# github.com/go-spring/spring-boost v0.0.0-20210919065342-b77a23a19833
+## explicit
+github.com/go-spring/spring-boost/cast
+github.com/go-spring/spring-boost/conf
+github.com/go-spring/spring-boost/conf/prop
+github.com/go-spring/spring-boost/conf/toml
+github.com/go-spring/spring-boost/conf/yaml
+github.com/go-spring/spring-boost/console
+github.com/go-spring/spring-boost/contain
+github.com/go-spring/spring-boost/json
+github.com/go-spring/spring-boost/log
+github.com/go-spring/spring-boost/util
+# github.com/go-spring/spring-core v1.0.6-0.20210919070406-296d1cd840e4
+## explicit
+github.com/go-spring/spring-core/grpc
+github.com/go-spring/spring-core/gs
+github.com/go-spring/spring-core/gs/arg
+github.com/go-spring/spring-core/gs/cond
+github.com/go-spring/spring-core/gs/internal
+github.com/go-spring/spring-core/mq
+github.com/go-spring/spring-core/web
+# github.com/go-spring/starter-core v1.1.0-alpha
+## explicit
+github.com/go-spring/starter-core
+# github.com/go-sql-driver/mysql v1.5.0
+github.com/go-sql-driver/mysql
+# github.com/jinzhu/gorm v1.9.15
+## explicit
+github.com/jinzhu/gorm
+github.com/jinzhu/gorm/dialects/mysql
+# github.com/jinzhu/inflection v1.0.0
+github.com/jinzhu/inflection
+# github.com/magiconair/properties v1.8.5
+github.com/magiconair/properties
+# github.com/pelletier/go-toml v1.9.4
+github.com/pelletier/go-toml
+# github.com/spf13/cast v1.3.1
+github.com/spf13/cast
+# gopkg.in/yaml.v2 v2.4.0
+gopkg.in/yaml.v2
