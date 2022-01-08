@@ -14,24 +14,30 @@
  * limitations under the License.
  */
 
-package StarterMySqlGorm
+package main
 
 import (
+	"fmt"
+
 	"github.com/go-spring/spring-base/log"
-	"github.com/go-spring/spring-core/database"
 	"github.com/go-spring/spring-core/gs"
-	"github.com/go-spring/spring-core/gs/cond"
-	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+
+	_ "github.com/go-spring/starter-gorm/mysql"
 )
 
-func init() {
-	gs.Provide(createDB, "${gorm}").
-		Name("GormDB").
-		On(cond.OnMissingBean(gs.BeanID((*gorm.DB)(nil), "GormDB")))
+type runner struct {
+	DB *gorm.DB `autowire:""`
 }
 
-func createDB(config database.ClientConfig) (*gorm.DB, error) {
-	log.Infof("open gorm mysql %s", config.Url)
-	return gorm.Open(mysql.Open(config.Url))
+func (r *runner) Run(ctx gs.Context) {
+	var engines []string
+	r.DB.Raw("select engine from engines").Scan(&engines)
+	log.Infof("got mysql engines %v", engines)
+	go gs.ShutDown()
+}
+
+func main() {
+	gs.Object(&runner{}).Export((*gs.AppRunner)(nil))
+	fmt.Printf("program exited %v\n", gs.Web(false).Run())
 }
