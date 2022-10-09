@@ -30,7 +30,7 @@ type Factory struct {
 	Logger *log.Logger `logger:""`
 }
 
-func (factory *Factory) CreateDB(config database.ClientConfig) (*gorm.DB, error) {
+func (factory *Factory) CreateDB(config database.Config) (*gorm.DB, error) {
 	factory.Logger.Infof("open gorm mysql %s", config.URL)
 	db, err := gorm.Open(mysql.Open(config.URL))
 	if err != nil {
