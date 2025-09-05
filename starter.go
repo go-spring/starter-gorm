@@ -14,31 +14,20 @@
  * limitations under the License.
  */
 
-package main
+package StarterGormMySql
 
 import (
-	"fmt"
-
-	"github.com/go-spring/spring-base/log"
 	"github.com/go-spring/spring-core/gs"
+	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-
-	_ "github.com/go-spring/starter-gorm/mysql"
 )
 
-type runner struct {
-	Logger *log.Logger `logger:""`
-	DB     *gorm.DB    `autowire:""`
+type Config struct {
+	URL string `value:"${url}"`
 }
 
-func (r *runner) Run(ctx gs.Context) {
-	var engines []string
-	r.DB.Raw("select engine from engines").Scan(&engines)
-	r.Logger.Infof("got mysql engines %v", engines)
-	go gs.ShutDown()
-}
-
-func main() {
-	gs.Object(&runner{}).Export((*gs.AppRunner)(nil))
-	fmt.Printf("program exited %v\n", gs.Web(false).Run())
+func init() {
+	gs.Group("spring.gorm", func(c Config) (*gorm.DB, error) {
+		return gorm.Open(mysql.Open(c.URL))
+	}, nil)
 }
